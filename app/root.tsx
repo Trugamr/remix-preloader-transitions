@@ -1,6 +1,7 @@
 import { LinksFunction, MetaFunction } from '@remix-run/node'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
+import { Links, Meta, Scripts, ScrollRestoration, useOutlet } from '@remix-run/react'
 import globalsCssHref from '~/globals.css?url'
+import { AppShell } from './components/app-shell'
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,6 +18,8 @@ export const links: LinksFunction = () => {
 }
 
 export default function App() {
+  const outlet = useOutlet()
+
   return (
     <html lang="en" className="h-full">
       <head>
@@ -26,7 +29,7 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <Outlet />
+        <AppShell>{outlet}</AppShell>
         <ScrollRestoration />
         <Scripts />
       </body>
