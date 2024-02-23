@@ -1,18 +1,14 @@
 import { motion } from 'framer-motion'
 
-type PageTransitionProps = {
-  isLoading: boolean
-}
-
 const PAGE_TRANSITION_DELAY = 0
 export const PAGE_TRANSITION_TIMING = PAGE_TRANSITION_DELAY
 
-export function PageTransition({ isLoading }: PageTransitionProps) {
+export function PageTransition() {
   return (
     <motion.div
       className="pointer-events-none fixed inset-0 z-10 flex h-full w-full"
       initial="cover"
-      animate={isLoading ? 'cover' : 'reveal'}
+      animate="reveal"
       exit="cover"
       transition={{
         staggerChildren: 0.065,
