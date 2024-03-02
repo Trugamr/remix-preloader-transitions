@@ -1,4 +1,11 @@
 import { Transition, Variants, motion } from 'framer-motion'
+import { usePreservedLoaderData } from '~/hooks/use-preserved-loader-data'
+
+export async function loader() {
+  return {
+    message: 'Dolphins are intelligent marine mammals.',
+  }
+}
 
 const variants = {
   initial: { y: 480, opacity: 0 },
@@ -11,6 +18,8 @@ const transition = {
 } satisfies Transition
 
 export default function AboutPage() {
+  const data = usePreservedLoaderData<typeof loader>()
+
   return (
     <motion.main className="min-h-full p-6">
       <motion.img
@@ -28,7 +37,7 @@ export default function AboutPage() {
         About
       </motion.h1>
       <motion.p variants={variants} transition={transition}>
-        Dolphins are intelligent marine mammals.
+        {data.message}
       </motion.p>
     </motion.main>
   )
